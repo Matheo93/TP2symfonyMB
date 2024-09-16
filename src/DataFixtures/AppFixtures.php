@@ -57,6 +57,15 @@ class AppFixtures extends Fixture
             array_push($categoryArray, $category); // Ajout de l'objet
             $manager->persist($category);
         }
+        // Admin
+            $user =  new User();
+            $user
+                ->setEmail('hello@codexpress.fr')
+                ->setUsername('Jensone')
+                ->setPassword($this->hash->hashPassword($user, 'admin'))
+                ->setRoles(['ROLE_ADMIN'])
+                ;
+            $manager->persist($user);
 
         // 10 utilisateurs
         for ($i = 0; $i < 10; $i++) {
