@@ -3,13 +3,14 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
-use App\Entity\User;
-use App\Entity\Category;
 use App\Entity\Note;
+use App\Entity\User;
+use App\Entity\Network;
+use App\Entity\Category;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\String\Slugger\SluggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
@@ -64,9 +65,11 @@ class AppFixtures extends Fixture
                 ->setUsername('Jensone')
                 ->setPassword($this->hash->hashPassword($user, 'admin'))
                 ->setRoles(['ROLE_ADMIN'])
+                ->setImage('https://avatar.iran.liara.run/public/50')
                 ;
             $manager->persist($user);
 
+            $networks = ['github', 'twitter', 'linkedin', 'facebook', 'reddit', 'instagram', 'youtube'];
         // 10 utilisateurs
         for ($i = 0; $i < 10; $i++) {
             $username = $faker->userName; // Génére un username aléatoire
@@ -77,7 +80,17 @@ class AppFixtures extends Fixture
                 ->setUsername($username)
                 ->setPassword($this->hash->hashPassword($user, 'admin'))
                 ->setRoles(['ROLE_USER'])
+                ->setImage('https://avatar.iran.liara.run/public/' . $i)
                 ;
+            for ($z=0; $z < 3; $z++) {
+                $network = new Network();
+                $network
+                    ->setName($faker->randomElement($networks))
+                    ->setUrl('hhtps://' . $network->getName() . '.com')
+                    ->setCreator($user)
+                    ;
+                $manager->persist($network);
+            }
             $manager->persist($user);
 
             for ($j=0; $j < 10; $j++) { 
@@ -85,7 +98,7 @@ class AppFixtures extends Fixture
                 $note
                     ->setTitle($faker->sentence())
                     ->setSlug($this->slug->slug($note->getTitle()))
-                    ->setContent($faker->paragraphs(4, true))
+                    ->setContent($faker->randomHtml())
                     ->setPublic($faker->boolean(50))
                     ->setViews($faker->numberBetween(100, 10000))
                     ->setCreator($user)

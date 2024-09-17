@@ -25,14 +25,31 @@ class NoteController extends AbstractController
         ]);
     }
 
+
+
+
+
+
+
     #[Route('/n/{slug}', name: 'app_note_show', methods: ['GET'])]
     public function show(string $slug, NoteRepository $nr): Response
     {
+        $note = $nr->findOneBySlug($slug); // Objet Note
         // TODO: Mettre en place le filtre pour les notes privées
         return $this->render('note/show.html.twig', [
-            'note' => $nr->findOneBySlug($slug),
+            'note' => $note,
         ]);
     }
+
+
+
+
+
+
+
+
+
+
 
     #[Route('/u/{username}', name: 'app_note_user', methods: ['GET'])]
     public function userNotes(
