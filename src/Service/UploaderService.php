@@ -26,8 +26,6 @@ class UploaderService
             // $orignalName = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
             $fileName = uniqid('image-') . '.' . $file->guessExtension();
             $file->move($this->param->get('uploads_images_directory'), $fileName);
-
-            return $this->param->get('uploads_images_directory') . '/' . $fileName;
         } catch (\Exception $e) {
             throw new \Exception('An error occured while uploading the image: ' . $e->getMessage());
         }

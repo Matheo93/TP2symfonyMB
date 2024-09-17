@@ -25,11 +25,7 @@ class CreatorController extends AbstractController
     }
 
     #[Route('/profile/edit', name: 'app_profile_edit', methods: ['GET', 'POST'])]
-    public function edit(
-        Request $request, 
-        EntityManagerInterface $em,
-        UploaderService $uploader
-        ): Response
+    public function edit(Request $request, EntityManagerInterface $em, UploaderService $uploader): Response
     {
         $user = $this->getUser(); // Récupère l'utilisateur authentifié
         $form = $this->createForm(CreatorType::class, $user);
