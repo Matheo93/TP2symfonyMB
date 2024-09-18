@@ -67,6 +67,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->notes = new ArrayCollection();
+        $this->image = 'default.png';
     }
 
     #[ORM\PrePersist]

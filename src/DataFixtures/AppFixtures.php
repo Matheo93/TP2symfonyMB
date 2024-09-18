@@ -67,7 +67,6 @@ class AppFixtures extends Fixture
             ->setUsername('Jensone')
             ->setPassword($this->hash->hashPassword($user, 'admin'))
             ->setRoles(['ROLE_ADMIN'])
-            ->setImage('https://avatar.iran.liara.run/public/50')
             ;
         $manager->persist($user);
 
@@ -105,7 +104,6 @@ class AppFixtures extends Fixture
                 ->setUsername($username)
                 ->setPassword($this->hash->hashPassword($user, 'admin'))
                 ->setRoles(['ROLE_USER'])
-                ->setImage('https://avatar.iran.liara.run/public/' . $i)
                 ;
             for ($z=0; $z < 3; $z++) {
                 $network = new Network();
