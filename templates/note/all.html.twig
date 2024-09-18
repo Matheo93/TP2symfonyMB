@@ -12,7 +12,7 @@
     <main class="max-w-screen-lg mx-auto py-5 md:py-16 px-4">
         {{ include('components/notes-list.html.twig') }}
     </main>
-    {# <div class="px-4 pb-6 md:pb-16 text-center">
-        {{ knp_pagination_render(notes) }}
-    </div> #}
+    <div class="px-4 pb-6 md:pb-16 text-center">
+        {{ knp_pagination_render(allNotes) }}
+    </div>
 {% endblock %}
