@@ -54,7 +54,7 @@
                     {% endfor %}
                 </div>
             </div>
-            {# <div class="grid grid-cols-1 gap-4">
+            <div class="grid grid-cols-1 gap-4">
                 {% for item in creatorNotes %}
                     <a href="{{ path('app_note_show', {'slug': item.slug}) }}" class="rounded-md p-4 md:p-6 mb-4 flex flex-col border">
                         <p class="text-base mb-1 font-semibold">{{ item.title|slice(0,22) }}...</p>
@@ -64,7 +64,7 @@
                         </p>
                     </a>
                 {% endfor %}
-            </div> #}
+            </div>
         </aside>
     </section>
     <div class="max-w-screen-lg mx-auto px-4 pb-6 md:pb-16">
