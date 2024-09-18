@@ -5,7 +5,7 @@
 	</a>
 	<div class="flex justify-between items-center gap-4">
 		{{ include('components/_partials/search.html.twig') }}
-        <div class="flex justify-between items-center gap-4">
+        <div class="flex justify-between items-center gap-4 relative">
             {% if app.user %}
 				{# User is logged in #}
 				{{ include('components/_partials/navbar-login.html.twig') }}
