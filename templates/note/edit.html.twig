@@ -1,7 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello NoteController!{% endblock %}
+{% block title %}Edit Profile{% endblock %}
 
 {% block body %}
-{{ form(noteForm) }}
+    <h1 class="mb-4 text-2xl font-bold">Edit Your Profile</h1>
+    
+    {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+        {{ form_row(form.username, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        {{ form_row(form.email, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        {{ form_row(form.image, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        
+        <button type="submit" class="px-4 py-2 text-white bg-green-500 rounded hover:bg-green-600">Update Profile</button>
+    {{ form_end(form) }}
 {% endblock %}

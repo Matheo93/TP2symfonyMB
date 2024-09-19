@@ -1,18 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}
-	Add a new note
-{% endblock %}
+{% block title %}New Note{% endblock %}
 
 {% block body %}
-{% if app.user %}
-    {# {{ include('components/access-denied.html.twig') }} #}
-    {% if app.user.email|length > 18 %}
-        {{ form(noteForm) }}
-    {% endif %}
-{% else %}
-    {# {{ include('components/access-denied.html.twig') }} #}
-    <!-- JE SUIS LÀ -->
-    Access denied
-{% endif %}
+    <h1 class="mb-4 text-2xl font-bold">Create a New Note</h1>
+    
+    {{ form_start(form, {'attr': {'class': 'space-y-4'}}) }}
+        {{ form_row(form.title, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        {{ form_row(form.content, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        {{ form_row(form.is_public, {'attr': {'class': 'mr-2'}}) }}
+        {{ form_row(form.category, {'attr': {'class': 'w-full p-2 border rounded'}}) }}
+        
+        <button type="submit" class="px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">Create Note</button>
+    {{ form_end(form) }}
 {% endblock %}
